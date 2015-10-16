@@ -81,7 +81,7 @@ class BuildOptions
     include?("c++11") && option_defined?("c++11")
   end
 
-  # True if a {Formula} is being built in C++11 mode.
+  # True if a {Formula} is being built in C++14 mode.
   def cxx14?
     include?("c++14") && option_defined?("c++14")
   end

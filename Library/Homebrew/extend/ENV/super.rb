@@ -79,6 +79,7 @@ module Superenv
     # O - Enables argument refurbishing. Only active under the
     #     make/bsdmake wrappers currently.
     # x - Enable C++11 mode.
+    # y - Enable C++14 mode.
     # g - Enable "-stdlib=libc++" for clang.
     # h - Enable "-stdlib=libstdc++" for clang.
     # K - Don't strip -arch <arch>, -m32, or -m64
@@ -305,6 +306,18 @@ module Superenv
 
   def libstdcxx
     append "HOMEBREW_CCCFG", "h", "" if compiler == :clang
+  end
+
+  def cxx14
+    case homebrew_cc
+    when "clang"
+      append "HOMEBREW_CCCFG", "y", ""
+      append "HOMEBREW_CCCFG", "g", ""
+    when /gcc-(4\.(8|9)|5)/
+      append "HOMEBREW_CCCFG", "y", ""
+    else
+      raise "The selected compiler doesn't support C++14: #{homebrew_cc}"
+    end
   end
 
   # @private

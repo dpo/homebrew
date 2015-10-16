@@ -69,6 +69,10 @@ class CompilerFailure
       create(:gcc => "4.5"),
       create(:gcc => "4.6")
     ],
+    :cxx14 => [
+      create(:gcc),
+      create(:clang) { build 600 },
+    ],
     :openmp => [
       create(:clang),
       create(:llvm)

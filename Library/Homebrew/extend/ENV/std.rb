@@ -301,6 +301,17 @@ module Stdenv
     end
   end
 
+  def cxx14
+    if compiler == :clang
+      append "CXX", "-std=c++1y"
+      append "CXX", "-stdlib=libc++"
+    elsif compiler =~ /gcc-(4\.(8|9)|5)/
+      append "CXX", "-std=c++14"
+    else
+      raise "The selected compiler doesn't support C++14: #{compiler}"
+    end
+  end
+
   # @private
   def replace_in_cflags(before, after)
     CC_FLAG_VARS.each do |key|

@@ -81,6 +81,11 @@ class BuildOptions
     include?("c++11") && option_defined?("c++11")
   end
 
+  # True if a {Formula} is being built in C++11 mode.
+  def cxx14?
+    include?("c++14") && option_defined?("c++14")
+  end
+
   # True if a {Formula} is being built in 32-bit/x86 mode.
   # This is needed for some use-cases though we prefer to build Universal
   # when a 32-bit version is needed.

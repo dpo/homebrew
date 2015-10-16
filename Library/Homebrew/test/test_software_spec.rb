@@ -80,6 +80,12 @@ class SoftwareSpecTests < Homebrew::TestCase
     refute @spec.option_defined?("cxx11")
   end
 
+  def test_cxx14_option_special_case
+    @spec.option(:cxx14)
+    assert @spec.option_defined?("c++14")
+    refute @spec.option_defined?("cxx14")
+  end
+
   def test_option_description
     @spec.option("bar", "description")
     assert_equal "description", @spec.options.first.description
